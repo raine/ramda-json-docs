@@ -4,4 +4,4 @@ Generated with [ramda-json-docs-generator](https://github.com/raine/ramda-json-d
 
 Used for [alfred-ramda-workflow](https://github.com/raine/alfred-ramda-workflow).
 
-Latest: https://cdn.rawgit.com/raine/ramda-json-docs/master/latest.json
+Latest: https://raine.github.io/ramda-json-docs/latest.json
