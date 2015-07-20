@@ -157,7 +157,7 @@ Latest: https://raine.github.io/ramda-json-docs/latest.json
 | [`partition`](http://ramdajs.com/docs/#partition)               | `(a -> Boolean) -> [a] -> [[a],[a]]`                                                                    | List     |
 | [`pathEq`](http://ramdajs.com/docs/#pathEq)                     | `[String] -> * -> {String: *} -> Boolean`                                                               | Relation |
 | [`pluck`](http://ramdajs.com/docs/#pluck)                       | `k -> [{k: v}] -> [v]`                                                                                  | List     |
-| [`propEq`](http://ramdajs.com/docs/#propEq)                     | `a -> String -> Object -> Boolean`                                                                      | Relation |
+| [`propEq`](http://ramdajs.com/docs/#propEq)                     | `String -> a -> Object -> Boolean`                                                                      | Relation |
 | [`propIs`](http://ramdajs.com/docs/#propIs)                     | `Type -> String -> Object -> Boolean`                                                                   | Type     |
 | [`reduce`](http://ramdajs.com/docs/#reduce)                     | `(a,b -> a) -> a -> [b] -> a`                                                                           | List     |
 | [`reject`](http://ramdajs.com/docs/#reject)                     | `(a -> Boolean) -> [a] -> [a]`                                                                          | List     |
