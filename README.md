@@ -58,6 +58,7 @@ Latest: https://raine.github.io/ramda-json-docs/latest.json
 | [`lte`](http://ramdajs.com/docs/#lte)                           | `Ord a => a -> a -> Boolean`                                                                            | Relation |
 | [`mapAccum`](http://ramdajs.com/docs/#mapAccum)                 | `(acc -> x -> (acc, y)) -> acc -> [x] -> (acc, [y])`                                                    | List     |
 | [`mapAccumRight`](http://ramdajs.com/docs/#mapAccumRight)       | `(acc -> x -> (acc, y)) -> acc -> [x] -> (acc, [y])`                                                    | List     |
+| [`match`](http://ramdajs.com/docs/#match)                       | `RegExp -> String -> [String | Undefined]`                                                              | String   |
 | [`mathMod`](http://ramdajs.com/docs/#mathMod)                   | `Number -> Number -> Number`                                                                            | Math     |
 | [`max`](http://ramdajs.com/docs/#max)                           | `Ord a => a -> a -> a`                                                                                  | Relation |
 | [`maxBy`](http://ramdajs.com/docs/#maxBy)                       | `Ord b => (a -> b) -> a -> a -> a`                                                                      | Relation |
@@ -215,7 +216,6 @@ Latest: https://raine.github.io/ramda-json-docs/latest.json
 | [`uniqBy`](http://ramdajs.com/docs/#uniqBy)                     | `(a -> b) -> [a] -> [a]`                                                                                | List     |
 | [`invoker`](http://ramdajs.com/docs/#invoker)                   | `Number -> String -> (a -> b -> ... -> n -> Object -> *)`                                               | Function |
 | [`join`](http://ramdajs.com/docs/#join)                         | `String -> [a] -> String`                                                                               | List     |
-| [`match`](http://ramdajs.com/docs/#match)                       | `RegExp -> String -> [String | Undefined]`                                                              | String   |
 | [`memoize`](http://ramdajs.com/docs/#memoize)                   | `(*... -> a) -> (*... -> a)`                                                                            | Function |
 | [`split`](http://ramdajs.com/docs/#split)                       | `String -> String -> [String]`                                                                          | String   |
 | [`toLower`](http://ramdajs.com/docs/#toLower)                   | `String -> String`                                                                                      | String   |
