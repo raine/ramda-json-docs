@@ -76,6 +76,7 @@ Latest: https://raine.github.io/ramda-json-docs/latest.json
 | [`nthCharCode`](http://ramdajs.com/docs/#nthCharCode)           | `Number -> String -> Number`                                                                            | String   |
 | [`of`](http://ramdajs.com/docs/#of)                             | `a -> [a]`                                                                                              | Function |
 | [`once`](http://ramdajs.com/docs/#once)                         | `(a... -> b) -> (a... -> b)`                                                                            | Function |
+| [`over`](http://ramdajs.com/docs/#over)                         | `Lens s a -> (a -> a) -> s -> s`                                                                        | Object   |
 | [`path`](http://ramdajs.com/docs/#path)                         | `[String] -> {k: v} -> v | Undefined`                                                                   | Object   |
 | [`pick`](http://ramdajs.com/docs/#pick)                         | `[k] -> {k: v} -> {k: v}`                                                                               | Object   |
 | [`pickAll`](http://ramdajs.com/docs/#pickAll)                   | `[k] -> {k: v} -> {k: v}`                                                                               | Object   |
@@ -92,6 +93,7 @@ Latest: https://raine.github.io/ramda-json-docs/latest.json
 | [`replace`](http://ramdajs.com/docs/#replace)                   | `RegExp|String -> String -> String -> String`                                                           | String   |
 | [`reverse`](http://ramdajs.com/docs/#reverse)                   | `[a] -> [a]`                                                                                            | List     |
 | [`scan`](http://ramdajs.com/docs/#scan)                         | `(a,b -> a) -> a -> [b] -> [a]`                                                                         | List     |
+| [`set`](http://ramdajs.com/docs/#set)                           | `Lens s a -> a -> s -> s`                                                                               | Object   |
 | [`sort`](http://ramdajs.com/docs/#sort)                         | `(a,a -> Number) -> [a] -> [a]`                                                                         | List     |
 | [`sortBy`](http://ramdajs.com/docs/#sortBy)                     | `Ord b => (a -> b) -> [a] -> [a]`                                                                       | Relation |
 | [`subtract`](http://ramdajs.com/docs/#subtract)                 | `Number -> Number -> Number`                                                                            | Math     |
@@ -111,6 +113,7 @@ Latest: https://raine.github.io/ramda-json-docs/latest.json
 | [`update`](http://ramdajs.com/docs/#update)                     | `Number -> a -> [a] -> [a]`                                                                             | List     |
 | [`values`](http://ramdajs.com/docs/#values)                     | `{k: v} -> [v]`                                                                                         | Object   |
 | [`valuesIn`](http://ramdajs.com/docs/#valuesIn)                 | `{k: v} -> [v]`                                                                                         | Object   |
+| [`view`](http://ramdajs.com/docs/#view)                         | `Lens s a -> s -> a`                                                                                    | Object   |
 | [`where`](http://ramdajs.com/docs/#where)                       | `{String: (* -> Boolean)} -> {String: *} -> Boolean`                                                    | Object   |
 | [`wrap`](http://ramdajs.com/docs/#wrap)                         | `(a... -> b) -> ((a... -> b) -> a... -> c) -> (a... -> c)`                                              | Function |
 | [`xprod`](http://ramdajs.com/docs/#xprod)                       | `[a] -> [b] -> [[a,b]]`                                                                                 | List     |
@@ -190,6 +193,9 @@ Latest: https://raine.github.io/ramda-json-docs/latest.json
 | [`indexOf`](http://ramdajs.com/docs/#indexOf)                   | `a -> [a] -> Number`                                                                                    | List     |
 | [`init`](http://ramdajs.com/docs/#init)                         | `[a] -> [a]`                                                                                            | List     |
 | [`isSet`](http://ramdajs.com/docs/#isSet)                       | `[a] -> Boolean`                                                                                        | List     |
+| [`lens`](http://ramdajs.com/docs/#lens)                         | `(s -> a) -> ((a, s) -> s) -> Lens s a`                                                                 | Object   |
+| [`lensIndex`](http://ramdajs.com/docs/#lensIndex)               | `Number -> Lens s a`                                                                                    | Object   |
+| [`lensProp`](http://ramdajs.com/docs/#lensProp)                 | `String -> Lens s a`                                                                                    | Object   |
 | [`liftN`](http://ramdajs.com/docs/#liftN)                       | `Number -> (*... -> *) -> ([*]... -> [*])`                                                              | Function |
 | [`mean`](http://ramdajs.com/docs/#mean)                         | `[Number] -> Number`                                                                                    | Math     |
 | [`median`](http://ramdajs.com/docs/#median)                     | `[Number] -> Number`                                                                                    | Math     |

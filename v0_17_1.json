@@ -408,6 +408,12 @@
     "category": "Function"
   },
   {
+    "description": "Returns the result of \"setting\" the portion of the given data structure\nfocused by the given lens to the given value.",
+    "name": "over",
+    "sig": "Lens s a -> (a -> a) -> s -> s",
+    "category": "Object"
+  },
+  {
     "description": "Retrieve the value at a given path.",
     "name": "path",
     "sig": "[String] -> {k: v} -> v | Undefined",
@@ -502,6 +508,12 @@
     "name": "scan",
     "sig": "(a,b -> a) -> a -> [b] -> [a]",
     "category": "List"
+  },
+  {
+    "description": "Returns the result of \"setting\" the portion of the given data structure\nfocused by the given lens to the given value.",
+    "name": "set",
+    "sig": "Lens s a -> a -> s -> s",
+    "category": "Object"
   },
   {
     "description": "Returns a copy of the list, sorted according to the comparator function, which should accept two values at a\ntime and return a negative number if the first value is smaller, a positive number if it's larger, and zero\nif they are equal.  Please note that this is a **copy** of the list.  It does not modify the original.",
@@ -615,6 +627,12 @@
     "description": "Returns a list of all the properties, including prototype properties,\nof the supplied object.\nNote that the order of the output array is not guaranteed to be\nconsistent across different JS platforms.",
     "name": "valuesIn",
     "sig": "{k: v} -> [v]",
+    "category": "Object"
+  },
+  {
+    "description": "Returns a \"view\" of the given data structure, determined by the given lens.\nThe lens's focus determines which portion of the data structure is visible.",
+    "name": "view",
+    "sig": "Lens s a -> s -> a",
     "category": "Object"
   },
   {
@@ -1090,6 +1108,24 @@
     "name": "isSet",
     "sig": "[a] -> Boolean",
     "category": "List"
+  },
+  {
+    "description": "Returns a lens for the given getter and setter functions. The getter \"gets\"\nthe value of the focus; the setter \"sets\" the value of the focus. The setter\nshould not mutate the data structure.",
+    "name": "lens",
+    "sig": "(s -> a) -> ((a, s) -> s) -> Lens s a",
+    "category": "Object"
+  },
+  {
+    "description": "Returns a lens whose focus is the specified index.",
+    "name": "lensIndex",
+    "sig": "Number -> Lens s a",
+    "category": "Object"
+  },
+  {
+    "description": "Returns a lens whose focus is the specified property.",
+    "name": "lensProp",
+    "sig": "String -> Lens s a",
+    "category": "Object"
   },
   {
     "description": "\"lifts\" a function to be the specified arity, so that it may \"map over\" that many\nlists (or other Functors).",
