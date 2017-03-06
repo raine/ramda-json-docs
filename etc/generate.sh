@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -ex
 
-TAGS=5
+TAGS=2
 
 cd $DOCS
 git reset --hard
