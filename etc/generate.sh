@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 set -ex
 
-cd "$(dirname "$0")"
+TAGS=5
+
+cd $DOCS
 git reset --hard
-CONCURRENCY=1 DEBUG=* lsc ../ramda-json-docs-generator/fetch-github-tags.ls ../
-./update-readme.sh
-cd "../"
+CONCURRENCY=1 DEBUG=* lsc $DOCS_GENERATOR/fetch-github-tags.ls $TAGS $DOCS
+./etc/update-readme.sh
 git add *.json *.md
 git commit -m "`date`" || true
 git push
