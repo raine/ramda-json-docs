@@ -32,7 +32,7 @@
   {
     "description": "Returns `true` if both arguments are `true`; `false` otherwise.",
     "name": "and",
-    "sig": "a -> b -> a | b",
+    "sig": "* -> * -> *",
     "category": "Logic"
   },
   {
@@ -42,7 +42,7 @@
     "category": "List"
   },
   {
-    "description": "Returns a new list, composed of n-tuples of consecutive elements If `n` is\ngreater than the length of the list, an empty list is returned.\n\nActs as a transducer if a transformer is given in list position.",
+    "description": "Returns a new list, composed of n-tuples of consecutive elements If `n` is\ngreater than the length of the list, an empty list is returned.\n\nDispatches to the `aperture` method of the second argument, if present.\n\nActs as a transducer if a transformer is given in list position.",
     "name": "aperture",
     "sig": "Number -> [a] -> [[a]]",
     "category": "List"
@@ -60,12 +60,6 @@
     "category": "Function"
   },
   {
-    "description": "Makes an ascending comparator function out of a function that returns a value\nthat can be compared with `<` and `>`.",
-    "name": "ascend",
-    "sig": "Ord b => (a -> b) -> a -> a -> Number",
-    "category": "Function"
-  },
-  {
     "description": "Makes a shallow clone of an object, setting or overriding the specified\nproperty with the given value. Note that this copies and flattens prototype\nproperties onto the new object as well. All non-primitive properties are\ncopied by reference.",
     "name": "assoc",
     "sig": "String -> a -> {k: v} -> {k: v}",
@@ -74,7 +68,7 @@
   {
     "description": "Makes a shallow clone of an object, setting or overriding the nodes required\nto create the given path, and placing the specific value at the tail end of\nthat path. Note that this copies and flattens prototype properties onto the\nnew object as well. All non-primitive properties are copied by reference.",
     "name": "assocPath",
-    "sig": "[Idx] -> a -> {a} -> {a}",
+    "sig": "[String] -> a -> {k: v} -> {k: v}",
     "category": "Object"
   },
   {
@@ -114,15 +108,9 @@
     "category": "Logic"
   },
   {
-    "description": "Makes a descending comparator function out of a function that returns a value\nthat can be compared with `<` and `>`.",
-    "name": "descend",
-    "sig": "Ord b => (a -> b) -> a -> a -> Number",
-    "category": "Function"
-  },
-  {
     "description": "Finds the set (i.e. no duplicates) of all elements in the first list not\ncontained in the second list. Duplication is determined according to the\nvalue returned by applying the supplied predicate to two list elements.",
     "name": "differenceWith",
-    "sig": "((a, a) -> Boolean) -> [a] -> [a] -> [a]",
+    "sig": "(a -> a -> Boolean) -> [*] -> [*] -> [*]",
     "category": "Relation"
   },
   {
@@ -168,19 +156,19 @@
     "category": "List"
   },
   {
-    "description": "Returns the index of the first element of the list which matches the\npredicate, or `-1` if no element matches.\n\nActs as a transducer if a transformer is given in list position.",
+    "description": "Returns the index of the first element of the list which matches the\npredicate, or `-1` if no element matches.\n\nDispatches to the `findIndex` method of the second argument, if present.\n\nActs as a transducer if a transformer is given in list position.",
     "name": "findIndex",
     "sig": "(a -> Boolean) -> [a] -> Number",
     "category": "List"
   },
   {
-    "description": "Returns the last element of the list which matches the predicate, or\n`undefined` if no element matches.\n\nActs as a transducer if a transformer is given in list position.",
+    "description": "Returns the last element of the list which matches the predicate, or\n`undefined` if no element matches.\n\nDispatches to the `findLast` method of the second argument, if present.\n\nActs as a transducer if a transformer is given in list position.",
     "name": "findLast",
     "sig": "(a -> Boolean) -> [a] -> a | undefined",
     "category": "List"
   },
   {
-    "description": "Returns the index of the last element of the list which matches the\npredicate, or `-1` if no element matches.\n\nActs as a transducer if a transformer is given in list position.",
+    "description": "Returns the index of the last element of the list which matches the\npredicate, or `-1` if no element matches.\n\nDispatches to the `findLastIndex` method of the second argument, if present.\n\nActs as a transducer if a transformer is given in list position.",
     "name": "findLastIndex",
     "sig": "(a -> Boolean) -> [a] -> Number",
     "category": "List"
@@ -324,9 +312,9 @@
     "category": "List"
   },
   {
-    "description": "The mapAccumRight function behaves like a combination of map and reduce; it\napplies a function to each element of a list, passing an accumulating\nparameter from right to left, and returning a final value of this\naccumulator together with the new list.\n\nSimilar to `mapAccum`, except moves through the input list from the right to\nthe left.\n\nThe iterator function receives two arguments, *value* and *acc*, and should\nreturn a tuple *[value, acc]*.",
+    "description": "The mapAccumRight function behaves like a combination of map and reduce; it\napplies a function to each element of a list, passing an accumulating\nparameter from right to left, and returning a final value of this\naccumulator together with the new list.\n\nSimilar to `mapAccum`, except moves through the input list from the right to\nthe left.\n\nThe iterator function receives two arguments, *acc* and *value*, and should\nreturn a tuple *[acc, value]*.",
     "name": "mapAccumRight",
-    "sig": "(x-> acc -> (y, acc)) -> acc -> [x] -> ([y], acc)",
+    "sig": "(acc -> x -> (acc, y)) -> acc -> [x] -> (acc, [y])",
     "category": "List"
   },
   {
@@ -452,7 +440,7 @@
   {
     "description": "Returns `true` if one or both of its arguments are `true`. Returns `false`\nif both arguments are `false`.",
     "name": "or",
-    "sig": "a -> b -> a | b",
+    "sig": "* -> * -> *",
     "category": "Logic"
   },
   {
@@ -470,19 +458,19 @@
   {
     "description": "Retrieve the value at a given path.",
     "name": "path",
-    "sig": "[Idx] -> {a} -> a | Undefined",
+    "sig": "[String] -> {k: v} -> v | Undefined",
     "category": "Object"
   },
   {
     "description": "If the given, non-null object has a value at the given path, returns the\nvalue at that path. Otherwise returns the provided default value.",
     "name": "pathOr",
-    "sig": "a -> [Idx] -> {a} -> a",
+    "sig": "a -> [String] -> Object -> a",
     "category": "Object"
   },
   {
     "description": "Returns `true` if the specified object property at given path satisfies the\ngiven predicate; `false` otherwise.",
     "name": "pathSatisfies",
-    "sig": "(a -> Boolean) -> [Idx] -> {a} -> Boolean",
+    "sig": "(a -> Boolean) -> [String] -> Object -> Boolean",
     "category": "Logic"
   },
   {
@@ -546,9 +534,9 @@
     "category": "List"
   },
   {
-    "description": "Returns a single item by iterating through the list, successively calling\nthe iterator function and passing it an accumulator value and the current\nvalue from the array, and then passing the result to the next call.\n\nSimilar to `reduce`, except moves through the input list from the right to\nthe left.\n\nThe iterator function receives two values: *(value, acc)*, while the arguments'\norder of `reduce`'s iterator function is *(acc, value)*.\n\nNote: `R.reduceRight` does not skip deleted or unassigned indices (sparse\narrays), unlike the native `Array.prototype.reduce` method. For more details\non this behavior, see:\nhttps://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduceRight#Description",
+    "description": "Returns a single item by iterating through the list, successively calling\nthe iterator function and passing it an accumulator value and the current\nvalue from the array, and then passing the result to the next call.\n\nSimilar to `reduce`, except moves through the input list from the right to\nthe left.\n\nThe iterator function receives two values: *(acc, value)*\n\nNote: `R.reduceRight` does not skip deleted or unassigned indices (sparse\narrays), unlike the native `Array.prototype.reduce` method. For more details\non this behavior, see:\nhttps://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduceRight#Description",
     "name": "reduceRight",
-    "sig": "(a, b -> b) -> b -> [a] -> b",
+    "sig": "(a,b -> a) -> a -> [b] -> a",
     "category": "List"
   },
   {
@@ -603,12 +591,6 @@
     "description": "Sorts the list according to the supplied function.",
     "name": "sortBy",
     "sig": "Ord b => (a -> b) -> [a] -> [a]",
-    "category": "Relation"
-  },
-  {
-    "description": "Sorts a list according to a list of comparators.",
-    "name": "sortWith",
-    "sig": "[a -> a -> Number] -> [a] -> [a]",
     "category": "Relation"
   },
   {
@@ -792,6 +774,12 @@
     "category": "Object"
   },
   {
+    "description": "Wrap a function inside another to allow you to make adjustments to the\nparameters, or do other processing either before the internal function is\ncalled or with its results.",
+    "name": "wrap",
+    "sig": "(a... -> b) -> ((a... -> b) -> a... -> c) -> (a... -> c)",
+    "category": "Function"
+  },
+  {
     "description": "Creates a new list out of the two supplied by creating each possible pair\nfrom the lists.",
     "name": "xprod",
     "sig": "[a] -> [b] -> [[a,b]]",
@@ -840,7 +828,7 @@
     "category": "Function"
   },
   {
-    "description": "Creates a deep copy of the value which may contain (nested) `Array`s and\n`Object`s, `Number`s, `String`s, `Boolean`s and `Date`s. `Function`s are\nassigned by reference rather than copied\n\nDispatches to a `clone` method if present.",
+    "description": "Creates a deep copy of the value which may contain (nested) `Array`s and\n`Object`s, `Number`s, `String`s, `Boolean`s and `Date`s. `Function`s are not\ncopied, but assigned by their reference.\n\nDispatches to a `clone` method if present.",
     "name": "clone",
     "sig": "{*} -> {*}",
     "category": "Object"
@@ -864,7 +852,7 @@
     "category": "List"
   },
   {
-    "description": "Returns a new list excluding all the tailing elements of a given list which\nsatisfy the supplied predicate function. It passes each value from the right\nto the supplied predicate function, skipping elements until the predicate\nfunction returns a `falsy` value. The predicate function is applied to one argument:\n*(value)*.",
+    "description": "Returns a new list excluding all the tailing elements of a given list which\nsatisfy the supplied predicate function. It passes each value from the right\nto the supplied predicate function, skipping elements while the predicate\nfunction returns `true`. The predicate function is applied to one argument:\n*(value)*.",
     "name": "dropLastWhile",
     "sig": "(a -> Boolean) -> [a] -> [a]",
     "category": "List"
@@ -894,12 +882,6 @@
     "category": "Function"
   },
   {
-    "description": "Iterate over an input `object`, calling a provided function `fn` for each\nkey and value in the object.\n\n`fn` receives three argument: *(value, key, obj)*.",
-    "name": "forEachObjIndexed",
-    "sig": "((a, String, StrMap a) -> Any) -> StrMap a -> StrMap a",
-    "category": "Object"
-  },
-  {
     "description": "Returns the first element of the given list or string. In some libraries\nthis function is named `first`.",
     "name": "head",
     "sig": "[a] -> a | Undefined",
@@ -914,7 +896,7 @@
   {
     "description": "Combines two lists into a set (i.e. no duplicates) composed of those\nelements common to both lists. Duplication is determined according to the\nvalue returned by applying the supplied predicate to two list elements.",
     "name": "intersectionWith",
-    "sig": "((a, a) -> Boolean) -> [a] -> [a] -> [a]",
+    "sig": "(a -> a -> Boolean) -> [*] -> [*] -> [*]",
     "category": "Relation"
   },
   {
@@ -986,7 +968,7 @@
   {
     "description": "Determines whether a nested path on an object has a specific value, in\n`R.equals` terms. Most likely used to filter a list.",
     "name": "pathEq",
-    "sig": "[Idx] -> a -> {a} -> Boolean",
+    "sig": "[String] -> * -> {String: *} -> Boolean",
     "category": "Relation"
   },
   {
@@ -1008,7 +990,7 @@
     "category": "Relation"
   },
   {
-    "description": "Returns a single item by iterating through the list, successively calling\nthe iterator function and passing it an accumulator value and the current\nvalue from the array, and then passing the result to the next call.\n\nThe iterator function receives two values: *(acc, value)*. It may use\n`R.reduced` to shortcut the iteration.\n\nThe arguments' order of `reduceRight`'s iterator function is *(value, acc)*.\n\nNote: `R.reduce` does not skip deleted or unassigned indices (sparse\narrays), unlike the native `Array.prototype.reduce` method. For more details\non this behavior, see:\nhttps://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce#Description\n\nDispatches to the `reduce` method of the third argument, if present.",
+    "description": "Returns a single item by iterating through the list, successively calling\nthe iterator function and passing it an accumulator value and the current\nvalue from the array, and then passing the result to the next call.\n\nThe iterator function receives two values: *(acc, value)*. It may use\n`R.reduced` to shortcut the iteration.\n\nNote: `R.reduce` does not skip deleted or unassigned indices (sparse\narrays), unlike the native `Array.prototype.reduce` method. For more details\non this behavior, see:\nhttps://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce#Description\n\nDispatches to the `reduce` method of the third argument, if present.",
     "name": "reduce",
     "sig": "((a, b) -> a) -> a -> [b] -> a",
     "category": "List"
@@ -1104,7 +1086,7 @@
     "category": "List"
   },
   {
-    "description": "Returns a function, `fn`, which encapsulates `if/else, if/else, ...` logic.\n`R.cond` takes a list of [predicate, transformer] pairs. All of the arguments\nto `fn` are applied to each of the predicates in turn until one returns a\n\"truthy\" value, at which point `fn` returns the result of applying its\narguments to the corresponding transformer. If none of the predicates\nmatches, `fn` returns undefined.",
+    "description": "Returns a function, `fn`, which encapsulates if/else-if/else logic.\n`R.cond` takes a list of [predicate, transform] pairs. All of the arguments\nto `fn` are applied to each of the predicates in turn until one returns a\n\"truthy\" value, at which point `fn` returns the result of applying its\narguments to the corresponding transformer. If none of the predicates\nmatches, `fn` returns undefined.",
     "name": "cond",
     "sig": "[[(*... -> Boolean),(*... -> *)]] -> (*... -> *)",
     "category": "Logic"
@@ -1128,7 +1110,7 @@
     "category": "Relation"
   },
   {
-    "description": "Returns a new list without any consecutively repeating elements. Equality is\ndetermined by applying the supplied predicate to each pair of consecutive elements. The\nfirst element in a series of equal elements will be preserved.\n\nActs as a transducer if a transformer is given in list position.",
+    "description": "Returns a new list without any consecutively repeating elements. Equality is\ndetermined by applying the supplied predicate two consecutive elements. The\nfirst element in a series of equal element is the one being preserved.\n\nDispatches to the `dropRepeatsWith` method of the second argument, if present.\n\nActs as a transducer if a transformer is given in list position.",
     "name": "dropRepeatsWith",
     "sig": "(a, a -> Boolean) -> [a] -> [a]",
     "category": "List"
@@ -1184,7 +1166,7 @@
   {
     "description": "Returns a lens whose focus is the specified path.",
     "name": "lensPath",
-    "sig": "[Idx] -> Lens s a",
+    "sig": "[String] -> Lens s a",
     "category": "Object"
   },
   {
@@ -1262,7 +1244,7 @@
   {
     "description": "Returns the right-to-left Kleisli composition of the provided functions,\neach of which must return a value of a type supported by [`chain`](#chain).\n\n`R.composeK(h, g, f)` is equivalent to `R.compose(R.chain(h), R.chain(g), R.chain(f))`.",
     "name": "composeK",
-    "sig": "Chain m => ((y -> m z), (x -> m y), ..., (a -> m b)) -> (a -> m z)",
+    "sig": "Chain m => ((y -> m z), (x -> m y), ..., (a -> m b)) -> (m a -> m z)",
     "category": "Function"
   },
   {
@@ -1284,13 +1266,13 @@
     "category": "List"
   },
   {
-    "description": "Finds the set (i.e. no duplicates) of all elements in the first list not\ncontained in the second list. Objects and Arrays are compared are compared\nin terms of value equality, not reference equality.",
+    "description": "Finds the set (i.e. no duplicates) of all elements in the first list not\ncontained in the second list.",
     "name": "difference",
     "sig": "[*] -> [*] -> [*]",
     "category": "Relation"
   },
   {
-    "description": "Returns a new list without any consecutively repeating elements. `R.equals`\nis used to determine equality.\n\nActs as a transducer if a transformer is given in list position.",
+    "description": "Returns a new list without any consecutively repeating elements. `R.equals`\nis used to determine equality.\n\nDispatches to the `dropRepeats` method of the first argument, if present.\n\nActs as a transducer if a transformer is given in list position.",
     "name": "dropRepeats",
     "sig": "[a] -> [a]",
     "category": "List"
@@ -1310,7 +1292,7 @@
   {
     "description": "Returns the left-to-right Kleisli composition of the provided functions,\neach of which must return a value of a type supported by [`chain`](#chain).\n\n`R.pipeK(f, g, h)` is equivalent to `R.pipe(R.chain(f), R.chain(g), R.chain(h))`.",
     "name": "pipeK",
-    "sig": "Chain m => ((a -> m b), (b -> m c), ..., (y -> m z)) -> (a -> m z)",
+    "sig": "Chain m => ((a -> m b), (b -> m c), ..., (y -> m z)) -> (m a -> m z)",
     "category": "Function"
   },
   {
@@ -1326,13 +1308,13 @@
     "category": "List"
   },
   {
-    "description": "A function which calls the two provided functions and returns the `&&`\nof the results.\nIt returns the result of the first function if it is false-y and the result\nof the second function otherwise. Note that this is short-circuited,\nmeaning that the second function will not be invoked if the first returns a\nfalse-y value.\n\nIn addition to functions, `R.both` also accepts any fantasy-land compatible\napplicative functor.",
+    "description": "A function wrapping calls to the two functions in an `&&` operation,\nreturning the result of the first function if it is false-y and the result\nof the second function otherwise. Note that this is short-circuited,\nmeaning that the second function will not be invoked if the first returns a\nfalse-y value.\n\nIn addition to functions, `R.both` also accepts any fantasy-land compatible\napplicative functor.",
     "name": "both",
     "sig": "(*... -> Boolean) -> (*... -> Boolean) -> (*... -> Boolean)",
     "category": "Logic"
   },
   {
-    "description": "Takes a function `f` and returns a function `g` such that if called with the same arguments\nwhen `f` returns a \"truthy\" value, `g` returns `false` and when `f` returns a \"falsy\" value `g` returns `true`.\n\n`R.complement` may be applied to any functor",
+    "description": "Takes a function `f` and returns a function `g` such that:\n\n  - applying `g` to zero or more arguments will give __true__ if applying\n    the same arguments to `f` gives a logical __false__ value; and\n\n  - applying `g` to zero or more arguments will give __false__ if applying\n    the same arguments to `f` gives a logical __true__ value.\n\n`R.complement` will work on all other functors as well.",
     "name": "complement",
     "sig": "(*... -> *) -> (*... -> Boolean)",
     "category": "Logic"
@@ -1382,7 +1364,7 @@
   {
     "description": "Finds the set (i.e. no duplicates) of all elements contained in the first or\nsecond list, but not both. Duplication is determined according to the value\nreturned by applying the supplied predicate to two list elements.",
     "name": "symmetricDifferenceWith",
-    "sig": "((a, a) -> Boolean) -> [a] -> [a] -> [a]",
+    "sig": "(a -> a -> Boolean) -> [a] -> [a] -> [a]",
     "category": "Relation"
   },
   {
