@@ -12,7 +12,6 @@ Latest: https://raine.github.io/ramda-json-docs/latest.json
 | name                                                                          | sig                                                                                                     | category |
 | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | -------- |
 | [`__`](http://ramdajs.com/docs/#__)                                           |                                                                                                         | Function |
-| [`_isArrayLike`](http://ramdajs.com/docs/#_isArrayLike)                       | `* -> Boolean`                                                                                          | Type     |
 | [`add`](http://ramdajs.com/docs/#add)                                         | `Number -> Number -> Number`                                                                            | Math     |
 | [`adjust`](http://ramdajs.com/docs/#adjust)                                   | `(a -> a) -> Number -> [a] -> [a]`                                                                      | List     |
 | [`all`](http://ramdajs.com/docs/#all)                                         | `(a -> Boolean) -> [a] -> Boolean`                                                                      | List     |
@@ -191,7 +190,7 @@ Latest: https://raine.github.io/ramda-json-docs/latest.json
 | [`startsWith`](http://ramdajs.com/docs/#startsWith)                           | `[a] -> Boolean`                                                                                        | List     |
 | [`sum`](http://ramdajs.com/docs/#sum)                                         | `[Number] -> Number`                                                                                    | Math     |
 | [`takeLast`](http://ramdajs.com/docs/#takeLast)                               | `Number -> [a] -> [a]`                                                                                  | List     |
-| [`transduce`](http://ramdajs.com/docs/#transduce)                             | `(c -> c) -> (a,b -> a) -> a -> [b] -> a`                                                               | List     |
+| [`transduce`](http://ramdajs.com/docs/#transduce)                             | `(c -> c) -> ((a, b) -> a) -> a -> [b] -> a`                                                            | List     |
 | [`unionWith`](http://ramdajs.com/docs/#unionWith)                             | `(a -> a -> Boolean) -> [*] -> [*] -> [*]`                                                              | Relation |
 | [`whereEq`](http://ramdajs.com/docs/#whereEq)                                 | `{String: *} -> {String: *} -> Boolean`                                                                 | Object   |
 | [`allPass`](http://ramdajs.com/docs/#allPass)                                 | `[(*... -> Boolean)] -> (*... -> Boolean)`                                                              | Logic    |
